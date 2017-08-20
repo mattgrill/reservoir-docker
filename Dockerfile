@@ -1,6 +1,5 @@
 FROM alpine:3.6
 
-LABEL version="1.0.0"
 LABEL description="Project template for Drupal 8 sites built with the Reservoir distribution."
 LABEL license="GPL2"
 
@@ -13,6 +12,9 @@ RUN   apk add git openssh
 # INSTALL APACHE2
 RUN   apk add apache2 libxml2-dev apache2-utils && \
       mkdir -p /run/apache2/
+
+# INSTALL SQLITE
+RUN   apk add sqlite php7-sqlite3 php7-pdo_sqlite php7-pdo_sqlite
 
 # INSTALL PHP7
 RUN   apk add libressl curl openssl && \

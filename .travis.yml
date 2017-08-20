@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+branches:
+  only:
+    - master
+script:
+  # CREATE DOCKER IMAGE
+  - docker build -t drpal/acquia-reservoir:$RESERVOIR_BUILD_VERSION .
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  # PUSH DOCKER IMAGE TO DOCKER HUB
+  - docker push $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$RESERVOIR_BUILD_VERSION
